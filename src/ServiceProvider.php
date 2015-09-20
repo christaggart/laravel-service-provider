@@ -236,8 +236,12 @@ class ServiceProvider extends IlluminateProvider
      *
      * @return $this
      */
-    protected function mergeConfig($file)
+    protected function mergeConfig($file = null)
     {
+        if (empty($file)) {
+            $file = $this->packageName;
+        }
+
         $this->mergeConfigFrom(
             $this->paths['config']['src'].'/'.$this->buildFileName($file),
             $this->packageName
